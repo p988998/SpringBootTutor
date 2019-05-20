@@ -43,4 +43,38 @@ public class CourseRepository {
 
         return new ArrayList<Course>();
     }
+
+    public List<Course> addCourse(Course course) {
+        Course newCourse = Course.builder()
+                .className(course.getClassName())
+                .instructor(course.getInstructor())
+                .startDate(course.getStartDate())
+                .endDate(course.getEndDate())
+                .timeFrame(course.getTimeFrame())
+                .build();
+
+        courses.add(newCourse);
+        return courses;
+    }
+
+    public List<Course> deleteCourse(String name){
+        for(int i=0; i< courses.size(); i++){
+            if(courses.get(i).getClassName().equals(name)){
+                courses.remove(i);
+            }
+        }
+        return courses;
+    }
+    public List<Course> updateCourse(String name, Course course){
+        for(int i=0; i< courses.size(); i++){
+            if(courses.get(i).getClassName().equals(name)){
+                courses.get(i).setClassName(course.getClassName());
+                courses.get(i).setInstructor(course.getInstructor());
+                courses.get(i).setStartDate(course.getStartDate());
+                courses.get(i).setEndDate(course.getEndDate());
+                courses.get(i).setTimeFrame(course.getTimeFrame());
+            }
+        }
+        return courses;
+    }
 }
